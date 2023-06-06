@@ -1,9 +1,11 @@
-package com.raindrops;
+package com.raindrops.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.raindrops.Raindrops;
+import com.raindrops.screen.GameScreen;
 
 public class MainMenuScreen implements Screen {
     final Raindrops game;
@@ -29,13 +31,16 @@ public class MainMenuScreen implements Screen {
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
 
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Welcome to Raindrops!!! ").append(1);
+
         game.batch.begin();
-        game.font.draw(game.batch, "Welcome to Raindrops!!! ", 100, 150);
+        game.font.draw(game.batch, stringBuilder.toString(), 100, 150);
         game.font.draw(game.batch, "Tap anywhere to begin!", 100, 100);
         game.batch.end();
 
         if (Gdx.input.isTouched()) {
-            game.setScreen(new  GameScreen(game));
+            game.setScreen(new GameScreen(game));
             dispose();
         }
     }
